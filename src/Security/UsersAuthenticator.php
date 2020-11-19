@@ -70,7 +70,7 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Identifiants invalides.');
         }
 
         return $user;
@@ -78,7 +78,10 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        if($this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
+            return true;
+        }
+        throw new CustomUserMessageAuthenticationException("Identifiants invalides.");
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
