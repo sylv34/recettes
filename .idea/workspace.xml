@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f423d7d1-d29e-40f2-aeeb-9f3572e7ad04" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/image/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/layout/card_index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/layout/card_modal.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/layout/card_show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/layout/stepper.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/new_etape.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/new_ingredient.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/recette/search_result.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201119082200.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201119091642.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201119094939.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RecetteController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Recette.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RecetteType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RecetteRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/_delete_form.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/_form.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/edit.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/new.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/recette/show.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +161,7 @@
       <workItem from="1605820753209" duration="3605000" />
       <workItem from="1605855865344" duration="98000" />
       <workItem from="1605856013011" duration="37332000" />
-      <workItem from="1605935596894" duration="12801000" />
+      <workItem from="1605935596894" duration="14534000" />
     </task>
     <servers />
   </component>
