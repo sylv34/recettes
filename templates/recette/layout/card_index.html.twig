@@ -1,0 +1,73 @@
+<style>
+    .list-group-item {
+        color: darkgray;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    a{
+        color: inherit;
+    }
+    .card:hover {
+        cursor: pointer;
+    }
+</style>
+<a data-toggle="modal" data-target="#recette{{ recette.id }}">
+    <div class="card" id="card_index">
+        <div class="card-header">
+            <h2>{{ recette.title }}</h2>
+            <small class="text-muted"> {{ recette.description }}</small>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col pb-3">
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-clock-o" aria-hidden="true"></i> {{ recette.cookingTime.format('H:i') }}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pb-3">
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-cutlery" aria-hidden="true"></i> {{ recette.category.name }}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pb-3">
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-sun-o" aria-hidden="true"></i> {{ recette.season.name }}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pb-3">
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-user" aria-hidden="true"></i> {{ recette.nbPerson }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col">
+                            <span class="bs-stepper-circle bg-info text-black-50">{{ recette.ingredients.count }}</span> ingrédients
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-5">
+                            <span class="bs-stepper-circle bg-info text-black-50">{{ recette.etapes.count }}</span> étapes
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-6 text-left">
+                    <span class="text-muted small font-italic">Mis à jour le {{ recette.updatedAt }}</span>
+                </div>
+                <div class="col-6 text-right">
+                    <span class="text-muted small font-italic">{{ recette.author.firstname }} {{ recette.author.lastname }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+{{ include('recette/layout/card_modal.html.twig') }}
+

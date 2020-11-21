@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <section class="pt-5 pb-5 w-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="mb-3">Résultat pour {{ keyword }}</h1>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            {% for idx, recette in recettes %}
+                                <div class="col-md-4 mb-3">
+                                    {{ include('recette/layout/card_index.html.twig') }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

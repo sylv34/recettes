@@ -1,0 +1,94 @@
+<div class="modal fade" id="recette{{ recette.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ recette.title }}</h2>
+                    <small class="text-muted"> {{ recette.description }}</small>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3 pb-3 text-center">
+                            <div class="d-inline-block h-100 align-middle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ recette.cookingTime.format('H:i') }}</div>
+                        </div>
+                        <div class="col-3 pb-3 text-center">
+                            <div class="d-inline-block h-100 align-middle"><i class="fa fa-cutlery" aria-hidden="true"></i> {{ recette.category.name }}</div>
+                        </div>
+                        <div class="col-3 pb-3 text-center">
+                            <div class="d-inline-block h-100 align-middle"><i class="fa fa-sun-o" aria-hidden="true"></i> {{ recette.season.name }}</div>
+                        </div>
+                        <div class="col-3 pb-3 text-center">
+                            <div class="d-inline-block h-100 align-middle"><i class="fa fa-user" aria-hidden="true"></i> <span id="nbPerson_{{ recette.id }}">{{ recette.nbPerson }}</span> <a title="Ajouter une personne" id="morePerson_{{ recette.id }}" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a> <a id="lessPerson_{{ recette.id }}" title="Enlever une personne" href="#"><i class="fa fa-minus" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-lg-4 col-sm-12 border-right mb-5">
+                            <ul class="list-group list-group-flush">
+                                {% for ingredient in recette.ingredients %}
+                                <li class="list-group-item">
+                                    <span style="font-size: 1.2em" class="quantity_{{ recette.id }}">{{ ingredient.quantity}}</span> {{ ingredient.content | raw}}
+                                </li>
+                               {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-sm-12">
+                            <ol class="recipe-preparation__list">
+                                {% for etape in recette.etapes %}
+                                <li class="recipe-preparation__list__item">
+                                    <span>{{ etape.content | raw}}</span>
+                                </li>
+                               {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-6 text-left">
+                            <span class="text-muted small font-italic">Mis à jour le {{ recette.updatedAt }}</span>
+                            <a class="text-muted small font-italic font-weight-bold" href="{{ path('recette_edit', {id: recette.id}) }}">Editer</a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span class="text-muted small font-italic">{{ recette.author.firstname }} {{ recette.author.lastname }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const lessPerson = document.getElementById('lessPerson_{{ recette.id }}')
+        const nbPerson = document.getElementById('nbPerson_{{ recette.id }}')
+        const nbBase = parseInt(nbPerson.innerHTML)
+        const quantityBase = []
+        document.querySelectorAll('.quantity_{{ recette.id }}').forEach((quantity) => {
+            quantityBase.push(parseInt(quantity.innerHTML))
+        })
+        document.getElementById('morePerson_{{ recette.id }}').addEventListener("click", (event) => {
+            event.preventDefault();
+            const nbUpdated = parseInt(nbPerson.innerHTML)
+            nbPerson.innerHTML = (nbUpdated + 1).toString()
+            updateIngredients(nbUpdated + 1)
+        })
+        lessPerson.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (parseInt(nbPerson.innerHTML) > 1) {
+                const nbUpdated = parseInt(nbPerson.innerHTML)
+                nbPerson.innerHTML = (nbUpdated - 1).toString()
+                updateIngredients(nbUpdated - 1)
+            }
+        })
+        function updateIngredients(nbNew) {
+            document.querySelectorAll('.quantity_{{ recette.id }}').forEach((quantity, idx) => {
+                let newQuantity = (nbNew * parseInt(quantityBase[idx]) / nbBase)
+                newQuantity = Number.isInteger(newQuantity) ? newQuantity : newQuantity.toFixed(1)
+                quantity.innerHTML = newQuantity.toLocaleString('fr')
+            })
+        }
+    });
+</script>

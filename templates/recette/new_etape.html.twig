@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Recette{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ include('recette/layout/stepper.html.twig') }}
+        <div class="row">
+            <div class="col-2">
+                <a class="btn float-left" href="{{ url('recette_new_ingredients', {id:recette.id}) }}">
+                    <i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="col-8">
+                <h1 class="text-center">Etapes</h1>
+            </div>
+            <div class="col-2">
+                <a class="btn float-right" href="{{ path('recette_index') }}"><i class="fa fa-2x fa-check" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                {{ include('recette/layout/card_show.html.twig') }}
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                {{ form(formEtape) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

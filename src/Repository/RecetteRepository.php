@@ -19,32 +19,30 @@ class RecetteRepository extends ServiceEntityRepository
         parent::__construct($registry, Recette::class);
     }
 
-    // /**
-    //  * @return Recette[] Returns an array of Recette objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Recette[] Returns an array of Recette objects
+     */
+    public function findByCategory($name)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return array_values(array_filter($this->findAll(), function(Recette $recette) use ($name){
+            return $recette->getCategory()->getName() === $name;
+        }));
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Recette
+
+    public function findByKeyword($keyword): ?array
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return   $query = $this->getEntityManager()->createQuery(
+            'SELECT r
+                FROM App\Entity\Recette r
+                INNER JOIN r.category c
+                INNER JOIN r.ingredients i
+                INNER JOIN r.season s
+                WHERE r.title LIKE :keyword
+                OR c.name LIKE :keyword
+                OR i.content LIKE :keyword
+                OR s.name LIKE :keyword'
+        )->setParameter('keyword', "%" . $keyword . "%")->getResult();
     }
-    */
+
 }

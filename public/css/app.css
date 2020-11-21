@@ -1,0 +1,63 @@
+.text-info, .card-header h2 {
+    color: rgb(223, 100, 67) !important;
+}
+.btn-info {
+    background-color: rgb(223, 100, 67) !important;
+    border-color: rgb(223, 100, 67) !important;
+}
+.bg-info {
+    background-color: rgb(223, 100, 67) !important;
+}
+body {
+    background-color: rgb(241, 238, 235);
+    background-image: url("../image/background.png");
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1.1em;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Indie Flower', cursive;
+}
+
+.recipe-preparation__list {
+    counter-reset: li;
+    list-style: none;
+    *list-style: decimal;
+    padding: 0;
+}
+.recipe-preparation__list>.recipe-preparation__list__item {
+    position: relative;
+    padding: 5px 0 33px 50px;
+    line-height: 1.44;
+}
+.recipe-preparation__list>.recipe-preparation__list__item:before {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: #ff6f61;
+    width: 35px;
+    height: 35px;
+    line-height: 38px;
+    box-shadow: 1px 1px 12px 0 rgba(0, 0, 0, 0.07);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+/*.card-header{*/
+/*    color: #ff6f61;*/
+/*}*/
+.list-group-item {
+    color: darkgray;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

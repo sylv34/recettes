@@ -3,36 +3,39 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-lg-4 m-auto">
-            <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-4 m-auto">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="text-info">Connexion</h1>
+                    <div class="form-group">
+                        <label for="inputEmail" class="required">Email</label>
+                        <input  value="{{ last_username }}" type="email" id="inputEmail" name="email" required="required" class="form-control" autofocus>
                     </div>
-                {% endif %}
+                    <div class="form-group">
+                        <label for="inputPassword" class="required">Mot de passe</label>
+                        <input  value="{{ last_username }}" type="password" id="inputPassword" name="password" required="required" class="form-control">
+                    </div>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <div class="form-group d-inline-block">
+                        <button type="submit" class="btn-info btn">Connexion</button>
+                    </div>
+                    <div class="form-group d-inline-block float-right"><a href="{{ path('app_register') }}">Inscription</a></div>
 
-                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-                <div class="form-group">
-                    <label for="inputEmail" class="required">Email</label>
-                    <input  value="{{ last_username }}" type="email" id="inputEmail" name="email" required="required" class="form-control" autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="required">Mot de passe</label>
-                    <input  value="{{ last_username }}" type="password" id="inputPassword" name="password" required="required" class="form-control">
-                </div>
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-                <div class="form-group">
-                    <button type="submit" class="btn-primary btn">Connexion</button>
-                </div>
-                <div class="form-text text-muted"><a href="{{ path('app_register') }}">Inscription</a></div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

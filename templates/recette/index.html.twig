@@ -1,37 +1,138 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recette index{% endblock %}
+{% block title %}Recette{% endblock %}
 
 {% block body %}
-    <h1>Recette index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recette in recettes %}
-            <tr>
-                <td>{{ recette.id }}</td>
-                <td>{{ recette.Title }}</td>
-                <td>{{ recette.content }}</td>
-                <td>
-                    <a href="{{ path('recette_show', {'id': recette.id}) }}">show</a>
-                    <a href="{{ path('recette_edit', {'id': recette.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('recette_new') }}">Create new</a>
+    <div class="container-fluid mx-sm-2">
+        {% if entrees is not empty %}
+            <div class="row">
+                <section class="pt-5 pb-5 w-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h1 class="mb-3">Entrées</h1>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a class="mb-3 mr-1" href="#entree" role="button" data-slide="prev">
+                                    <i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="mb-3 mr-1" href="#entree" role="button" data-slide="next">
+                                    <i class="fa fa-2x fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <div id="entree" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="row">
+                                                {% for idx, recette in entrees %}
+                                                    {% if idx !=0 and idx % 3 == 0 %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <div class="row">
+                                                    {% endif %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {{ include('recette/layout/card_index.html.twig') }}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        {% endif %}
+        <svg height="46px" width="100%" viewBox="0 0 1440 55" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="sc-dcfGPC iBUvGe"><path d="M1440 10.5996V55H0V38.5994C5.34212 39.0729 11.4785 39.3197 18.7586 39.3197C99.1663 39.3197 219.563 23.6873 306.763 12.3652L306.766 12.3648C315.609 11.2166 324.11 10.1128 332.194 9.07411C411.256 -1.08482 493.211 -4.60511 572.198 8.52415C592.437 11.8883 613.118 13.5851 633.734 15.2766C645.333 16.2283 656.912 17.1784 668.38 18.4227C696.455 21.4689 724.81 23.4808 753.088 25.4872C764.064 26.266 775.028 27.044 785.961 27.8813C825.517 30.911 864.943 33.8858 904.667 35.6901C923.258 36.5345 942.086 35.7346 960.907 34.935C974.027 34.3776 987.143 33.8204 1000.17 33.8204C1027.31 33.8204 1054.67 29.8373 1081.6 25.7915C1095.64 23.6827 1109.88 22.7475 1124.15 21.8104C1139.02 20.8336 1153.93 19.8549 1168.66 17.5427C1177.06 16.225 1185.5 15.9543 1193.94 15.6839C1201.95 15.4275 1209.94 15.1713 1217.88 14.0232C1231.03 12.1198 1245.7 10.2519 1258.99 10.0638C1268.48 9.92938 1277.9 9.51241 1287.32 9.0956C1298.75 8.58972 1310.17 8.08409 1321.72 8.08408C1327.74 8.08408 1333.86 7.59519 1340.02 7.1033C1346.25 6.60537 1352.52 6.10437 1358.77 6.10437C1364.7 6.10437 1370.75 6.61051 1376.74 7.11096C1382.58 7.60024 1388.37 8.08407 1393.91 8.08407C1399.72 8.08407 1405.28 8.58576 1410.81 9.08403C1416.26 9.57556 1421.67 10.0638 1427.25 10.0638C1429.77 10.0638 1434.75 10.1733 1440 10.5996Z" fill="#df6443"></path></svg>
+        <div class="bg-info">
+            {% if plats is not empty %}
+            <div class="row">
+                <section class="pt-5 pb-5 w-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h1 class="mb-3 text-white">Plats</h1>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a class="mb-3 mr-1" href="#plat" role="button" data-slide="prev">
+                                    <i style="color: white" class="fa fa-2x fa-arrow-left" aria-hidden="true"></i>
+                                </a>
+                                <a class="mb-3 mr-1" href="#plat" role="button" data-slide="next">
+                                    <i style="color: white" class="fa fa-2x fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <div id="plat" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <div class="row">
+                                                {% for idx, recette in plats %}
+                                                    {% if idx !=0 and idx % 3 == 0 %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <div class="row">
+                                                    {% endif %}
+                                                    <div class="col-md-4 mb-3">
+                                                        {{ include('recette/layout/card_index.html.twig') }}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            {% endif %}
+        </div>
+        <svg height="46px" width="100%" viewBox="0 0 1440 55" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="transform: scale(-1, -1);"><path d="M1440 10.5996V55H0V38.5994C5.34212 39.0729 11.4785 39.3197 18.7586 39.3197C99.1663 39.3197 219.563 23.6873 306.763 12.3652L306.766 12.3648C315.609 11.2166 324.11 10.1128 332.194 9.07411C411.256 -1.08482 493.211 -4.60511 572.198 8.52415C592.437 11.8883 613.118 13.5851 633.734 15.2766C645.333 16.2283 656.912 17.1784 668.38 18.4227C696.455 21.4689 724.81 23.4808 753.088 25.4872C764.064 26.266 775.028 27.044 785.961 27.8813C825.517 30.911 864.943 33.8858 904.667 35.6901C923.258 36.5345 942.086 35.7346 960.907 34.935C974.027 34.3776 987.143 33.8204 1000.17 33.8204C1027.31 33.8204 1054.67 29.8373 1081.6 25.7915C1095.64 23.6827 1109.88 22.7475 1124.15 21.8104C1139.02 20.8336 1153.93 19.8549 1168.66 17.5427C1177.06 16.225 1185.5 15.9543 1193.94 15.6839C1201.95 15.4275 1209.94 15.1713 1217.88 14.0232C1231.03 12.1198 1245.7 10.2519 1258.99 10.0638C1268.48 9.92938 1277.9 9.51241 1287.32 9.0956C1298.75 8.58972 1310.17 8.08409 1321.72 8.08408C1327.74 8.08408 1333.86 7.59519 1340.02 7.1033C1346.25 6.60537 1352.52 6.10437 1358.77 6.10437C1364.7 6.10437 1370.75 6.61051 1376.74 7.11096C1382.58 7.60024 1388.37 8.08407 1393.91 8.08407C1399.72 8.08407 1405.28 8.58576 1410.81 9.08403C1416.26 9.57556 1421.67 10.0638 1427.25 10.0638C1429.77 10.0638 1434.75 10.1733 1440 10.5996Z" fill="#df6443"></path></svg>
+        {% if desserts is not empty %}
+        <div class="row">
+            <section class="pt-5 pb-5 w-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <h1 class="mb-3">Desserts</h1>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a class="mb-3 mr-1" href="#dessert" role="button" data-slide="prev">
+                                <i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i>
+                            </a>
+                            <a class="mb-3 mr-1" href="#dessert" role="button" data-slide="next">
+                                <i class="fa fa-2x fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <div id="dessert" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            {% for idx, recette in desserts %}
+                                                {% if idx !=0 and idx % 3 == 0 %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <div class="row">
+                                                {% endif %}
+                                                <div class="col-md-4 mb-3">
+                                                    {{ include('recette/layout/card_index.html.twig') }}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

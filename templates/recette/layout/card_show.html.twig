@@ -1,0 +1,70 @@
+<style>
+
+    .card {
+        box-shadow: 20px 20px rgba(0,0,0,.03);
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+        <h2>{{ recette.title }}</h2>
+        <small class="text-muted"> {{ recette.description }}</small>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3 pb-3 text-center">
+                <div class="d-inline-block h-100 align-middle"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ recette.cookingTime.format('H:i') }}</div>
+            </div>
+            <div class="col-3 pb-3 text-center">
+                <div class="d-inline-block h-100 align-middle"><i class="fa fa-cutlery" aria-hidden="true"></i> {{ recette.category.name }}</div>
+            </div>
+            <div class="col-3 pb-3 text-center">
+                <div class="d-inline-block h-100 align-middle"><i class="fa fa-sun-o" aria-hidden="true"></i> {{ recette.season.name }}</div>
+            </div>
+            <div class="col-3 pb-3 text-center">
+                <div class="d-inline-block h-100 align-middle"><i class="fa fa-user" aria-hidden="true"></i> {{ recette.nbPerson }}</div>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-lg-4 col-sm-12 border-right mb-5">
+                <ul class="list-group list-group-flush">
+                    {% for ingredient in recette.ingredients %}
+                    <li class="list-group-item">
+                        {{ ingredient.quantity }} {{ ingredient.content | raw}}
+                        <span class="float-right" title="Effacer l'ingrédient">
+                            {{ include('ingredient/_delete_form.html.twig') }}
+                        </span>
+                    </li>
+                   {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                <ol class="recipe-preparation__list">
+                    {% for etape in recette.etapes %}
+                    <li class="recipe-preparation__list__item">
+                        <span>{{ etape.content | raw}}</span>
+                        <span class="float-right" title="Effacer l'étape">
+                            {{ include('etape/_delete_form.html.twig') }}
+                        </span>
+                        <span class="float-right mr-3">
+                            <a href="{{ path('recette_new_etapes', {id: recette.id, idEtape: etape.id}) }}" class="btn" title="Modifier l'étape">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                    </li>
+                   {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-6 text-left">
+                <span class="text-muted small font-italic">Mis à jour le {{ recette.updatedAt }}</span>
+            </div>
+            <div class="col-6 text-right">
+                <span class="text-muted small font-italic">{{ recette.author.firstname }} {{ recette.author.lastname }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+

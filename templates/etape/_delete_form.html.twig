@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('etape_delete', {'id': etape.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir effacer cette étape ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ etape.id) }}">
+    <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+</form>

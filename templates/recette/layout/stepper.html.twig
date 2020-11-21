@@ -1,0 +1,60 @@
+<style>
+    #stepper a {
+        color: black;
+    }
+    #stepper a:visited {
+        color: inherit;
+    }
+    #stepper a:hover {
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+{% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|split('/')[3]  %}
+<div id="stepper" class="bs-stepper">
+    <div class="bs-stepper-header">
+        <div class="step" data-target="#test-l-1">
+            <a href={{ (currentPath == 'titre') ? path('recette_new_title') : path('recette_edit', {id: recette.id}) }}>
+                <span class="bs-stepper-circle">1</span>
+                <span class="bs-stepper-label {{ (currentPath=='edit' or currentPath == 'titre') ? 'font-weight-bold text-info' : ''}} ">Information</span>
+            </a>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-2">
+            <a href="{{ (currentPath == 'titre') ? path('recette_new_ingredients',{id: 0}) : path('recette_new_ingredients', {id: recette.id}) }}">
+                <span class="bs-stepper-circle">2</span>
+                <span class="bs-stepper-label {{ (currentPath=='ingredients') ? 'font-weight-bold text-info' : ''}}">Ingrédients</span>
+            </a>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-3">
+            <a href="{{ (currentPath == 'titre') ? path('recette_new_etapes', {id: 0}) : path('recette_new_etapes', {id: recette.id}) }}">
+                <span class="bs-stepper-circle">3</span>
+                <span class="bs-stepper-label {{ (currentPath=='etapes') ? 'font-weight-bold text-info' : ''}}">Etapes</span>
+            </a>
+        </div>
+    </div>
+    <div class="bs-stepper-content">
+        <div id="test-l-1" class="content">
+            <p class="text-center">test 1</p>
+            <button class="btn btn-primary" onclick="myStepper.next()">Next</button>
+        </div>
+        <div id="test-l-2" class="content">
+            <p class="text-center">test 2</p>
+            <button class="btn btn-primary" onclick="myStepper.next()">Next</button>
+        </div>
+        <div id="test-l-3" class="content">
+            <p class="text-center">test 3</p>
+            <button class="btn btn-primary" onclick="myStepper.next()">Next</button>
+            <button class="btn btn-primary" onclick="myStepper.previous()">Previous</button>
+        </div>
+    </div>
+</div>
+
+{% block javascripts%}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            myStepper = new Stepper(document.querySelector('#stepper'))
+        })
+    </script>
+{% endblock %}
