@@ -27,7 +27,10 @@ class RecetteType extends AbstractType
                 'label' => 'Titre'
             ])
             ->add('cookingTime', TimeType::class, [
-                'label' => 'Temps de préparation'
+                'label' => 'Temps de cuisson',
+            ])
+            ->add('preparationTime', TimeType::class, [
+                'label' => 'Temps de préparation',
             ])
             ->add('nbPerson', IntegerType::class, [
                 'label' => 'Nombre de personnes'

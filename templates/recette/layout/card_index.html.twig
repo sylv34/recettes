@@ -23,7 +23,12 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col pb-3">
-                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-clock-o" aria-hidden="true"></i> {{ recette.cookingTime.format('H:i') }}</div>
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-clock-o" aria-hidden="true"></i> {{ recette.preparationTime.format('H\\h i\\m') }}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col pb-3">
+                            <div class="d-inline-block h-100 align-middle"><i class="text-info fa fa-free-code-camp" aria-hidden="true"></i> {{ recette.cookingTime.format('H\\h i\\m') }}</div>
                         </div>
                     </div>
                     <div class="row">

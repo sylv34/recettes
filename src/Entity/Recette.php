@@ -46,6 +46,11 @@ class Recette
     private $cookingTime;
 
     /**
+     * @ORM\Column(type="time")
+     */
+    private $preparationTime;
+
+    /**
      * @ORM\Column(type="string", length=10)
      */
     private $updated_at;
@@ -249,5 +254,21 @@ class Recette
     public function setUpdatedAt($updated_at): void
     {
         $this->updated_at = $updated_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreparationTime()
+    {
+        return $this->preparationTime;
+    }
+
+    /**
+     * @param mixed $preparationTime
+     */
+    public function setPreparationTime($preparationTime): void
+    {
+        $this->preparationTime = $preparationTime;
     }
 }
